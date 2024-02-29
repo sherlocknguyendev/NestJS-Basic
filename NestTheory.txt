@@ -1,0 +1,57 @@
+
+- Folder 'dist': Dịch code (bên Folder 'src') từ TS sang JS (Vì NodeJS/Chorme k hiểu đc TS) -> 'dist' là Folder cuối khi mình chạy App
+- File '.eslintrc.js': Quy định cách/kiểu code TS
+- File 'nest-cli.json': config Nest.js khi chạy CLI/build
+- File 'tsconfig.json': khai báo cách dịch code typescript thành javascript (môi trường
+development)
+- File 'tsconfig.build.json': khai báo cách dịch code typescript thành javascript (khi build với
+môi trường production)
+
+---------------------------------------------------------------------------------------------------------------
+
+- Decorators: 
+    + Decorator là những ký hiệu (chú thích/trang trí) giúp cho class/property/functions/params có
+thêm "sức mạnh" mới. (giúp trình compiler nhận biết rõ)
+
+    + Decorator bắt đầu bằng dấu "@', sau đấy là "expression" -> expression là sự diễn tả (expression là function sẽ được thực thi khi được sử dụng với “class sử dụng nó”)
+
+    + Decorator giúp bạn viết code ngắn hơn, có khả năng tái sử dụng ở nhiều nơi, đồng thời bổ sung 'sức mạnh' cho các thành phần được 'trang trí' (decorated).
+        Ví dụ:
+            class User {
+                @Min(0)
+                @Max(10)
+                @IsEmail
+                email: string;
+
+                @Max(20)
+                password: sting
+            } 
+            -> Có nghĩa là property 'email' phải có ký tự >0 và <19 và phải đúng là kiểu email (có @)
+            -> Property 'password" phải có ký tự <20
+            -> Cần phải có '()' sau mỗi expression (dù có chuyền tham số hay k) vì: quy định của NestJS (sử dụng các Decorator viết sẵn phải có "()") và cũng cho compiler nhận biết là thực thi expression đó 
+
+---------------------------------------------------------------------------------------------------------------
+
+- Inversion of Control (IoC): 
+    + Đảo ngược sự kiểm soát (của 1 function/đối tượng, ...).
+    + Thường sd trong OOP.
+    + IoC là nguyên tắc (cách thiết kế/bản vẽ), k phải là 'cách làm'.
+    => Nhờ có IoC, chúng ta có thể "giảm thiểu" sự phụ thuộc giữa các class với nhau. -> thay vì class A control class B, chúng ta sẽ đảo ngược, cho phép A và B có thể hoạt động độc lập
+    => Mục đích: có thể tách rời riêng lẻ và "test" độc lập, không phụ thuộc vào nhau (VD: khi 1 class cha quá nhiều class con thì khó biết lỗi ở đâu)
+
+- Modules: Là 1 file or có thể là 1 tính năng hoặc 1 nhóm tính năng có liên quan tới nhau
+    => Ưu điểm lớn nhất của cách làm chia ứng dụng thành các module:
+        + sự phát triển các modules có thể làm độc lập (thay vì code all-in-one)
+        + on/off modules này không làm ảnh hưởng tới modules kia (nếu các modules không phụ thuộc vào nhau)
+        + Đọc code dễ hơn. Dễ dàng trong việc test/maintain
+    => DI giúp chúng ta có thể chia code thành các modules độc lập
+
+- Dependencies Injection (DI): Tiêm/Cấy các thành phần phụ thuộc (Chỉ là 1 nguyên tắc) -> DI là 1 trong những design pattern của NestJS
+    + Kiểu như lấy 1 cái gì đấy từ đâu đấy sau đó tiêm vào cái khác (giống import từ file này sang file khác)
+        -> giúp tăng 'sức mạnh' cho 'cái được tiêm' (sẽ có thể hđ độc lập theo IoC)
+        -> Giúp các class kết nối tới nhau
+    + Về scope:
+        -> Nếu inject vào 1 modules cụ thể => chỉ có mình modules đấy sử dụng.
+        -> Nếu inject vào root modules => tất cả có thể dùng  
+    + DI gồm 3 thành phần chính: consumer, provider và injector
+        -> Injector (Thường ở dạng Decorator) lấy từ provider (service) và tiêm vào consumer (client-controller)  
