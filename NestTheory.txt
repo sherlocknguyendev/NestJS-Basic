@@ -55,3 +55,15 @@ thêm "sức mạnh" mới. (giúp trình compiler nhận biết rõ)
         -> Nếu inject vào root modules => tất cả có thể dùng  
     + DI gồm 3 thành phần chính: consumer, provider và injector
         -> Injector (Thường ở dạng Decorator) lấy từ provider (service) và tiêm vào consumer (client-controller)  
+
+---------------------------------------------------------------------------------------------------------------
+
+- NestJS sử dụng ORM/ODM => findAll() (chứ kp raw query => select * from)
+
+- Với SQL database (Mysql, SQL server, Postgres, Oracle,...), hỗ trợ các thư viện nổi tiếng sau: 
+    + MikroORM, Sequelize, Knex.js, TypeORM, Prisma, ...
+    -> Các thư viện này như công cụ để kết nối tới database dễ dàng hơn
+- Với NoSQ database (MongoDB, Redis,...), hỗ trợ các thư viện nổi tiếng sau:
+    + Mongoose, ...
+
+    => Đặc biệt, NestJS hỗ trợ TypeORM, Sequelize và Mongoose (mongodb) với các package @nestjs/typeorm , @nestjs/sequelize, @nestjs/mongoose
