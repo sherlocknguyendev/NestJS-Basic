@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Render } from '@nestjs/common';
 import { AppService } from './app.service';
 
 // Controller ở Nest phụ trách luôn phần điều hướng trang (cách hoạt động là cộng gộp route Controller với Method)
@@ -13,7 +13,12 @@ export class AppController {
   ) { }
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Render("home")
+  handleHomePage() {
+    const message = this.appService.getHello()
+    return {
+      message: message
+    }
   }
+
 }
