@@ -67,3 +67,14 @@ thêm "sức mạnh" mới. (giúp trình compiler nhận biết rõ)
     + Mongoose, ...
 
     => Đặc biệt, NestJS hỗ trợ TypeORM, Sequelize và Mongoose (mongodb) với các package @nestjs/typeorm , @nestjs/sequelize, @nestjs/mongoose
+
+---------------------------------------------------------------------------------------------------------------
+- dto: Data Transfer Object, là 1 object định nghĩa hình dạng dữ liệu để gửi đi qua Network(transfer) (frontend và backend)
+- dto giống như interface -> dùng để định nghĩa kiểu giá trị cho đối tượng (1 nhóm các thuộc tính)
+
+- Pipe(đường ống): hiểu nó giống như middleware(phần mềm trung gian)
+    + Pipe có 2 tác dụng:
+        -> Transform data : convert data input thành data mình mong muốn (VD: convert string => number ,array …)
+        -> Validate data
+
+- Guard: Là 1 middleware và cs khả năng override (ExecutionContext)
